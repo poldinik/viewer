@@ -1,0 +1,106 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:m='urn:import:gwt.material.design.client.ui'
+             xmlns:client="urn:import:gwt.material.design.addins.client"
+             xmlns:ma="urn:import:gwt.material.design.addins.client">
+    <ui:style gss="true">
+        body {
+            background: #f8f8f8;
+        }
+
+        .hide {
+            display: none;
+        }
+    </ui:style>
+    <m:MaterialPanel>
+<!--        <m:MaterialHeader ui:field="header">-->
+<!--            <m:MaterialNavBar ui:field="navBar" activates="sidenavNavShrink" backgroundColor="BLUE_DARKEN_4" shadow="1">-->
+<!--                <m:MaterialNavBrand fontSize="1.2em" paddingLeft="20" text="Image EXIF Viewer" />-->
+<!--                <m:MaterialNavSection float="RIGHT">-->
+<!--                    <m:MaterialLink iconType="INFO" textColor="WHITE" waves="LIGHT"/>-->
+<!--                </m:MaterialNavSection>-->
+<!--            </m:MaterialNavBar>-->
+<!--        </m:MaterialHeader>-->
+
+        <m:MaterialContainer height="100vh" paddingTop="0">
+            <m:MaterialRow ui:field="row">
+<!--                <m:MaterialColumn grid="l4 m12 s12">-->
+<!--                    <m:MaterialCard backgroundColor="WHITE">-->
+<!--                        <m:MaterialCardContent textColor="BLACK" ui:field="cardContent">-->
+<!--                            <m:MaterialCardTitle  textColor="BLACK" text="Async text"/>-->
+<!--                            <m:MaterialLabel ui:field="label"/>-->
+<!--                        </m:MaterialCardContent>-->
+<!--                        <m:MaterialCardAction>-->
+<!--                            <m:MaterialLink text="Reload" ui:field="button" iconType="REFRESH"/>-->
+<!--                        </m:MaterialCardAction>-->
+<!--                    </m:MaterialCard>-->
+<!--                </m:MaterialColumn>-->
+            </m:MaterialRow>
+            <m:MaterialRow>
+<!--                <m:MaterialColumn grid="l3 m12 s12">-->
+<!--                    <ma:fileuploader.MaterialFileUploader ui:field="uploader" url="/uploadServlet" maxFileSize="5" shadow="1">-->
+<!--                        <ma:fileuploader.MaterialUploadLabel title="Drag Files to Upload" description="Some description here" />-->
+<!--                    </ma:fileuploader.MaterialFileUploader>-->
+<!--                </m:MaterialColumn>-->
+            </m:MaterialRow>
+            <m:MaterialRow ui:field="carouselRow" display="NONE">
+                <m:MaterialColumn grid="l12 m12 s12">
+
+                    <ma:carousel.MaterialCarousel ui:field="multipleItemCarousel"  type="IMAGE" width="512px" textAlign="CENTER" infinite="true">
+                        <m:MaterialImage url="//i.imgur.com/8XlWy0H.png" />
+                        <m:MaterialImage url="//i.imgur.com/dQdwYhS.png" />
+                        <m:MaterialImage url="//i.imgur.com/TTAG5CS.png" />
+                    </ma:carousel.MaterialCarousel>
+<!--                    <ma:carousel.MaterialCarousel ui:field="multipleItemCarousel" textAlign="CENTER" slidesToShow="3" slidesToScroll="3">-->
+<!--                        <m:MaterialPanel margin="4" shadow="1" paddingTop="50" backgroundColor="WHITE" padding="20" height="512px">-->
+<!--                            <m:MaterialLabel textColor="BLUE" fontSize="5em" fontWeight="LIGHTER" text="1" />-->
+<!--                        </m:MaterialPanel>-->
+<!--                        <m:MaterialPanel margin="4" shadow="1" paddingTop="50" backgroundColor="WHITE" padding="20" height="512px">-->
+<!--                            <m:MaterialLabel textColor="BLUE" fontSize="5em" fontWeight="LIGHTER" text="2" />-->
+<!--                        </m:MaterialPanel>-->
+<!--                        <m:MaterialPanel margin="4" shadow="1" paddingTop="50" backgroundColor="WHITE" padding="20" height="512px">-->
+<!--                            <m:MaterialLabel textColor="BLUE" fontSize="5em" fontWeight="LIGHTER" text="3" />-->
+<!--                        </m:MaterialPanel>-->
+<!--                        <m:MaterialPanel margin="4" shadow="1" paddingTop="50" backgroundColor="WHITE" padding="20" height="512px">-->
+<!--                            <m:MaterialLabel textColor="BLUE" fontSize="5em" fontWeight="LIGHTER" text="4" />-->
+<!--                        </m:MaterialPanel>-->
+<!--                    </ma:carousel.MaterialCarousel>-->
+                </m:MaterialColumn>
+            </m:MaterialRow>
+            <m:MaterialFAB>
+                <m:MaterialAnchorButton type="FLOATING" iconType="MENU" size="LARGE" backgroundColor="BLUE_DARKEN_4"/>
+                <m:MaterialFABList>
+                    <m:MaterialAnchorButton ui:field="add" type="FLOATING" waves="LIGHT" iconType="ADD" backgroundColor="BLUE_DARKEN_2"/>
+                    <m:MaterialAnchorButton ui:field="upload" type="FLOATING" waves="LIGHT" backgroundColor="BLUE_DARKEN_2" iconType="FILE_UPLOAD"/>
+                    <m:MaterialAnchorButton type="FLOATING" waves="LIGHT" backgroundColor="BLUE_DARKEN_2" iconType="GRID_ON" ui:field="grid"/>
+                    <m:MaterialAnchorButton type="FLOATING" waves="LIGHT" backgroundColor="BLUE_DARKEN_2" iconType="VIEW_CAROUSEL" ui:field="carousel"/>
+<!--                    <m:MaterialAnchorButton type="FLOATING" waves="LIGHT" backgroundColor="RED_ACCENT_4" iconType="DELETE"/>-->
+                </m:MaterialFABList>
+            </m:MaterialFAB>
+            <g:HTMLPanel>
+                <iframe name="dummyframe" id="dummyframe" style="display: none"/>
+                <form action="http://localhost:8080/media" style="display: none" method="post" target="dummyframe" enctype="multipart/form-data">
+                    <input type="file" multiple="" name="uploadedFile" ui:field="fileupload" accept="image/jpeg"/>
+                    <input type="submit" ui:field="submit"/>
+                </form>
+            </g:HTMLPanel>
+
+            <m:MaterialDialog ui:field="dialog" type="DEFAULT" dismissible="false">
+                <m:MaterialDialogContent>
+                    <m:MaterialCard backgroundColor="WHITE">
+                        <m:MaterialCardImage waves="LIGHT">
+                            <client:webp.MaterialWebpImage url="https://gwtmaterialdesign.github.io/gwt-material-demo/images/card.webp" fallbackExtension="png"/>
+                            <m:MaterialCardTitle ui:field="title"/>
+                        </m:MaterialCardImage>
+                        <m:MaterialCardAction>
+                            <m:MaterialLink text="Visualizza" ui:field="visualize"/>
+                        </m:MaterialCardAction>
+                    </m:MaterialCard>
+                </m:MaterialDialogContent>
+                <m:MaterialDialogFooter>
+                    <m:MaterialButton text="Close Dialog" type="FLAT" ui:field="btnCloseDialog"/>
+                </m:MaterialDialogFooter>
+            </m:MaterialDialog>
+        </m:MaterialContainer>
+    </m:MaterialPanel>
+</ui:UiBinder>

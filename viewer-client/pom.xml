@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>it.unifi.ing.hci</groupId>
+    <artifactId>viewer</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>viewer-client</artifactId>
+  <packaging>gwt-app</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>viewer-shared</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>viewer-shared</artifactId>
+      <version>${project.version}</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-dev</artifactId>
+    </dependency>
+
+    <!-- GWT Material  -->
+
+    <dependency>
+      <groupId>com.github.gwtmaterialdesign</groupId>
+      <artifactId>gwt-material</artifactId>
+      <version>${gmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.gwtmaterialdesign</groupId>
+      <artifactId>gwt-material-addins</artifactId>
+      <version>${gmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.gwtmaterialdesign</groupId>
+      <artifactId>gwt-material-themes</artifactId>
+      <version>${gmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.gwtmaterialdesign</groupId>
+      <artifactId>gwt-material-jquery</artifactId>
+      <version>${gmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.gwtmaterialdesign</groupId>
+      <artifactId>gwt-material-table</artifactId>
+      <version>${gmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.12</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.elemental2</groupId>
+      <artifactId>elemental2-core</artifactId>
+      <version>1.0.0-RC1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.elemental2</groupId>
+      <artifactId>elemental2-dom</artifactId>
+      <version>1.0.0-RC1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.intendia.gwt</groupId>
+      <artifactId>rxjava2-gwt</artifactId>
+      <version>2.1.2-beta1</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>net.ltgt.gwt.maven</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <configuration>
+          <moduleName>it.unifi.ing.hci.App</moduleName>
+          <moduleShortName>app</moduleShortName>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
