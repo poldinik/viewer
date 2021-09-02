@@ -73,15 +73,31 @@ public class MediaResource extends CommonResource {
         File dir = new File(".");
         int sum = 0;
         List<String> exts = Arrays.asList("jpg", "jpeg");
+        List<String> mediaurl = new ArrayList<>();
         Iterator<String> iterator = exts.iterator();
         while (iterator.hasNext()){
             String ce = "." + iterator.next();
-            sum = sum +
-                    dir.listFiles((dir1, name) -> name.endsWith(ce)).length +
-                    dir.listFiles((dir1, name) -> name.endsWith(ce.toUpperCase())).length;
+//            sum = sum +
+//                    dir.listFiles((dir1, name) -> name.endsWith(ce)).length +
+//                    dir.listFiles((dir1, name) -> name.endsWith(ce.toUpperCase())).length;
+
+            File[] files1 = dir.listFiles((dir1, name) -> name.endsWith(ce));
+            File[] files2 = dir.listFiles((dir1, name) -> name.endsWith(ce.toUpperCase()));
+
+            for (File file1 : files1) {
+                String file1Name = file1.getName();
+                mediaurl.add(rootDomain + "/media/" + file1Name);
+            }
+
+            for (File file : files2) {
+                String name = file.getName();
+                mediaurl.add(rootDomain + "/media" + name);
+            }
         }
+
+
         HashMap<String, Object> response = new HashMap<>();
-        response.put("mediaCount", sum);
+        response.put("media", mediaurl);
         return Response.ok(response).build();
     }
 

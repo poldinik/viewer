@@ -1,16 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:m='urn:import:gwt.material.design.client.ui'
-             xmlns:client="urn:import:gwt.material.design.addins.client"
-
 >
     <m:MaterialCard backgroundColor="WHITE">
         <m:MaterialImage url="https://gwtmaterialdesign.github.io/gwt-material-demo/images/md-card-ripple.gif" type="MATERIALBOXED" caption="I love Material Design">
             <m:MaterialCardTitle ui:field="title"/>
         </m:MaterialImage>
-<!--        <m:MaterialCardImage waves="LIGHT">-->
-<!--            <client:webp.MaterialWebpImage url="https://gwtmaterialdesign.github.io/gwt-material-demo/images/card.webp" fallbackExtension="png"/>-->
-<!--            <m:MaterialCardTitle ui:field="title"/>-->
-<!--        </m:MaterialCardImage>-->
         <m:MaterialCardAction>
             <m:MaterialLink text="Visualizza" ui:field="visualize"/>
         </m:MaterialCardAction>

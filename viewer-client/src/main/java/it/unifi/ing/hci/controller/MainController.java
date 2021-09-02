@@ -1,18 +1,9 @@
 package it.unifi.ing.hci.controller;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.json.client.JSONNumber;
-import com.google.gwt.json.client.JSONParser;
-import com.google.gwt.json.client.JSONString;
-import com.google.gwt.json.client.JSONValue;
-import com.google.gwt.thirdparty.json.JSONStringer;
+import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
-import elemental2.dom.DomGlobal;
-import gwt.material.design.jscore.client.api.JSON;
 import it.unifi.ing.hci.App;
 import it.unifi.ing.hci.interop.Console;
 import it.unifi.ing.hci.model.Media;
@@ -57,7 +48,6 @@ public class MainController extends Controller implements ValueChangeHandler<Str
         bind(MainView.getInstance());
     }
 
-
     public void deleteMedia(Media media){
         REST.deleteImage(media, jsonValue -> {
             bind(MainView.getInstance());
@@ -70,12 +60,11 @@ public class MainController extends Controller implements ValueChangeHandler<Str
     }
 
     public void addMedia() {
-        REST.getMediaCounts((json) -> {
-            int count = Integer.parseInt(json.isObject().get("mediaCount").isNumber().toString());
+        REST.getMediaList((json) -> {
+            Console.log("ciao");
             mediaList.clear();
-            for (int i = 0; i < count; i++){
-                mediaList.add(new Media());
-            }
+            JSONArray mediaList = (JSONArray) json.isObject().get("media");
+            Console.log(mediaList);
             bind(MainView.getInstance());
         });
     }

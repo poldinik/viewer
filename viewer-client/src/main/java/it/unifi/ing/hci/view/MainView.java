@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Event;
@@ -71,11 +72,10 @@ public class MainView extends View<MainController> {
 
     FileUpload upload;
 
-
+    @UiConstructor
     public MainView() {
         // Riga del framework per binding classe con XML
         initWidget(ourUiBinder.createAndBindUi(this));
-
 
         // Collega un gestore di evento all'elemento corrispondente all'input per il file
         Event.sinkEvents(fileupload, Event.ONCHANGE);
@@ -96,7 +96,6 @@ public class MainView extends View<MainController> {
         panel.setMethod("post");
         panel.setEncoding("multipart/form-data");
 
-
         upload = new FileUpload();
         upload.setName("uploadedFile");
         upload.addChangeHandler(new ChangeHandler() {
@@ -105,8 +104,6 @@ public class MainView extends View<MainController> {
                 panel.submit();
             }
         });
-
-
 
 
         panel.add(upload);
@@ -118,6 +115,7 @@ public class MainView extends View<MainController> {
 
         panel.addSubmitCompleteHandler(submitCompleteEvent -> {
             MaterialLoader.loading(false);
+            GWT.log("AddMedia");
             getController().addMedia();
         });
 

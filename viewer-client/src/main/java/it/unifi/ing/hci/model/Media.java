@@ -11,4 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Media {
     private String title;
+    private String url;
+
+    public Media(String title) {
+        this.title = title;
+    }
 }

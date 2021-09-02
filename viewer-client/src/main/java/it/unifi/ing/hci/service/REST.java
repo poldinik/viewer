@@ -1,5 +1,7 @@
 package it.unifi.ing.hci.service;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.json.client.JSONObject;
 import com.google.gwt.json.client.JSONParser;
 import com.google.gwt.json.client.JSONValue;
 import elemental2.dom.DomGlobal;
@@ -23,13 +25,14 @@ public class REST {
                 );
     }
 
-    public static void getMediaCounts(onResponse onResponse){
+    public static void getMediaList(onResponse onResponse){
         String API = "http://localhost:8080/media";
         DomGlobal.fetch(API)
                 .then(Response::text)
                 .then(
                         data -> {
-                            JSONValue jsonValue = JSONParser.parseStrict(data);
+                            GWT.log("Get response of media api");
+                            JSONObject jsonValue = (JSONObject) JSONParser.parseStrict(data);
                             onResponse.onresponse(jsonValue);
                             return null;
                         }
