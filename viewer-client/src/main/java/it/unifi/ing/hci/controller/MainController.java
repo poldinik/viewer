@@ -93,6 +93,8 @@ public class MainController extends Controller implements ValueChangeHandler<Str
             loading = false;
             bind(MainView.getInstance());
         });
+
+        bind(MainView.getInstance());
     }
 
 }
