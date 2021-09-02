@@ -1,9 +1,13 @@
 package it.unifi.ing.hci.controller;
 
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
+import com.google.gwt.core.client.JsArrayString;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.json.client.JSONArray;
 import com.google.gwt.user.client.History;
+import gwt.material.design.jscore.client.api.JsObject;
 import it.unifi.ing.hci.App;
 import it.unifi.ing.hci.interop.Console;
 import it.unifi.ing.hci.model.Media;
@@ -25,6 +29,20 @@ public class MainController extends Controller implements ValueChangeHandler<Str
     public MainController(){
         History.addValueChangeHandler(this);
         //REST.getImageList((json) -> { });
+
+        REST.getMediaList((json) -> {
+            mediaList.clear();
+            JSONArray ml = json.isObject().get("media").isArray();
+            JsArrayString ja = (JsArrayString) ml.getJavaScriptObject();
+            Console.log("ARRAY");
+            Console.log(ja);
+            for (int i = 0; i < ja.length(); i++){
+                Media media = new Media();
+                media.setUrl(ja.get(i));
+                mediaList.add(media);
+            }
+            bind(MainView.getInstance());
+        });
     }
 
     @Override
@@ -63,8 +81,13 @@ public class MainController extends Controller implements ValueChangeHandler<Str
         REST.getMediaList((json) -> {
             Console.log("ciao");
             mediaList.clear();
-            JSONArray mediaList = (JSONArray) json.isObject().get("media");
-            Console.log(mediaList);
+            JSONArray ml = json.isObject().get("media").isArray();
+            JsArrayString ja = (JsArrayString) ml.getJavaScriptObject();
+            for (int i = 0; i < ja.length(); i++){
+                Media media = new Media();
+                media.setUrl(ja.get(i));
+                mediaList.add(new Media());
+            }
             bind(MainView.getInstance());
         });
     }

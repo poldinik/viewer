@@ -2,7 +2,7 @@
              xmlns:m='urn:import:gwt.material.design.client.ui'
 >
     <m:MaterialCard backgroundColor="WHITE">
-        <m:MaterialImage url="https://gwtmaterialdesign.github.io/gwt-material-demo/images/md-card-ripple.gif" type="MATERIALBOXED" caption="I love Material Design">
+        <m:MaterialImage ui:field="image" url="https://gwtmaterialdesign.github.io/gwt-material-demo/images/md-card-ripple.gif" type="MATERIALBOXED" caption="I love Material Design">
             <m:MaterialCardTitle ui:field="title"/>
         </m:MaterialImage>
         <m:MaterialCardAction>
