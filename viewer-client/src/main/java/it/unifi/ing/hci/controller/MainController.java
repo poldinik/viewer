@@ -25,6 +25,7 @@ public class MainController extends Controller implements ValueChangeHandler<Str
 
     private List<Media> mediaList = new ArrayList<>();
     private ModeView modeView = ModeView.of(ModeView.Mode.GRID);
+    private Boolean loading = false;
 
     public MainController(){
         History.addValueChangeHandler(this);
@@ -78,6 +79,7 @@ public class MainController extends Controller implements ValueChangeHandler<Str
     }
 
     public void addMedia() {
+        loading = true;
         REST.getMediaList((json) -> {
             Console.log("ciao");
             mediaList.clear();
@@ -86,9 +88,11 @@ public class MainController extends Controller implements ValueChangeHandler<Str
             for (int i = 0; i < ja.length(); i++){
                 Media media = new Media();
                 media.setUrl(ja.get(i));
-                mediaList.add(new Media());
+                mediaList.add(media);
             }
+            loading = false;
             bind(MainView.getInstance());
         });
     }
+
 }

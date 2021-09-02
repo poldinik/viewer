@@ -110,11 +110,9 @@ public class MainView extends View<MainController> {
         panel.setAction("http://localhost:8080/media");
 
         panel.addSubmitHandler(submitEvent -> {
-            MaterialLoader.loading(true);
         });
 
         panel.addSubmitCompleteHandler(submitCompleteEvent -> {
-            MaterialLoader.loading(false);
             GWT.log("AddMedia");
             getController().addMedia();
         });
@@ -133,6 +131,7 @@ public class MainView extends View<MainController> {
     // Metodo che esegue la renderizzazione della UI in base al model
     @Override
     public void render(){
+        MaterialLoader.loading(getController().getLoading());
         List<Media> mediaList = getController().getMediaList();
         if(mediaList.size() == 0){
             MaterialEmptyState materialEmptyState = new MaterialEmptyState();
